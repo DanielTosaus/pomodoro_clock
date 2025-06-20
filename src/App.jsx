@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import './App.css'
 import TimeSelector from './TimeSelector'
 import TimerComponent from './TimerComponent'
+import LofiPlayer from './LofiPlayerComponent';
 
 function App() {
 
@@ -15,6 +16,12 @@ function App() {
   const [running, setRunning] = useState(false)
 
   const timerRef = useRef(null)
+
+  //YT Player
+  const playerRef = useRef(null);
+  const [playing, setPlaying] = useState(true);
+  const [volume, setVolume] = useState(25); // start with low volume
+
   // Sync time_left with session_time when user updates session and timer is not running
   useEffect(() => {
     if (!running && current_label === "Session") {
@@ -41,7 +48,7 @@ function App() {
           else {
             // Wait 1 second on 00:00 before switching modes
             clearInterval(timerRef.current)
-            playBeep()
+            playGong()
             timeoutRef.current = setTimeout(() => {
               // Time's up: switch between Session <-> Break
               const nextLabel = current_label === "Session" ? "Break" : "Session"
@@ -63,15 +70,15 @@ function App() {
     return () => clearInterval(timerRef.current)
   }, [running, current_label, session_time, break_time])
 
-  function playBeep(){
+  function playGong(){
     const audio_beep = document.getElementById("beep")
       if (audio_beep){
         audio_beep.currentTime = 0; // Restart audio from the beginning
-        audio_beep.volume = 0.2;
+        audio_beep.volume = 1;
         audio_beep.play();
       }
   }
-  function stopBeep(){
+  function stopGong(){
     const audio_beep = document.getElementById("beep")
       if (audio_beep){
         audio_beep.pause();
@@ -79,7 +86,7 @@ function App() {
       }
   }
   function reset_state(){
-    stopBeep()
+    stopGong()
     clearInterval(timerRef.current)
     clearTimeout(timeoutRef.current)
     setBreakTime(5)
@@ -90,20 +97,6 @@ function App() {
   }
   return (
     <>
-      <h1>25 + 5 Clock</h1>
-      <p>Pomodoros Completed in this Session: {pomodoro_count}</p>
-      <TimeSelector
-        name="Break"
-        value={break_time}
-        running={running}
-        updateValue={setBreakTime}
-      />
-      <TimeSelector
-        name="Session"
-        value={session_time}
-        running={running}
-        updateValue={setSessionTime}
-      />
       <TimerComponent
         label={current_label}
         timeLeft={time_left}
@@ -111,7 +104,28 @@ function App() {
         updateRunning={setRunning}
         reset={reset_state}
       />
-      <audio id="beep" src="/gong.mp3"></audio>
+      <div id="selectors-wrapper">
+        <TimeSelector
+        name="Break"
+        emoji="🧘‍♀️"
+        value={break_time}
+        running={running}
+        updateValue={setBreakTime}
+        />
+        <TimeSelector
+          name="Session"
+          emoji="🌿"
+          value={session_time}
+          running={running}
+          updateValue={setSessionTime}
+        />
+      </div>
+      
+      <p>Pomodoros Completed in this Session: {pomodoro_count}</p>
+      <audio id="beep" src="/alarm.mp3"></audio>
+      <audio id="click" src="/click.mp3"></audio>
+      <audio id="main-click" src="/main_click.mp3"></audio>
+      <LofiPlayer />
       <p>Designed by me</p>
     </>
   )
