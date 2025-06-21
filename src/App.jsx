@@ -126,7 +126,7 @@ function App() {
       <audio id="click" src="/click.mp3"></audio>
       <audio id="main-click" src="/main_click.mp3"></audio>
       <LofiPlayer />
-      <p>Designed by me</p>
+      <p>Designed by Daniel Tosaus</p>
     </>
   )
 }

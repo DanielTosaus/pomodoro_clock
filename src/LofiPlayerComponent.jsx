@@ -3,22 +3,32 @@ import YouTube from 'react-youtube';
 
 const LofiPlayer = () => {
   const playerRef = useRef(null);
-  const [playing, setPlaying] = useState(true);
-  const [volume, setVolume] = useState(25); // start with low volume
+  const [started, setStarted] = useState(false);
+  const [playing, setPlaying] = useState(false);
+  const [volume, setVolume] = useState(25); // Low initial volume
 
   const opts = {
     height: '0',
     width: '0',
     playerVars: {
       autoplay: 1,
+      mute: 1,       // ✅ Start muted
       loop: 1,
-      playlist: 'NvftPSb5Xtw', // needed for looping
+      playlist: 'NvftPSb5Xtw',
     },
   };
 
   const onReady = (event) => {
     playerRef.current = event.target;
     playerRef.current.setVolume(volume);
+  };
+
+  const startMusic = () => {
+    if (!playerRef.current) return;
+    playerRef.current.unMute();
+    playerRef.current.playVideo();
+    setPlaying(true);
+    setStarted(true);
   };
 
   const togglePlay = () => {
@@ -40,21 +50,30 @@ const LofiPlayer = () => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div className="lofi-player fade-in">
       <YouTube videoId="NvftPSb5Xtw" opts={opts} onReady={onReady} />
-      <button onClick={togglePlay} style={{ marginTop: '1em' }}>
-        {playing ? '🔇 Pause Music' : '🔊 Play Music'}
-      </button>
-        <div className="volume-slider">
-        <span>🔉</span>
-        <input
-            type="range"
-            min="0"
-            max="100"
-            value={volume}
-            onChange={handleVolumeChange}
-        />
-        </div>
+      
+      {!started ? (
+        <button className="lofi-button" onClick={startMusic}>
+          🎵 Play Music
+        </button>
+      ) : (
+        <>
+          <button className="lofi-button" onClick={togglePlay}>
+            {playing ? '🔇 Pause Music' : '🔊 Play Music'}
+          </button>
+          <div className="volume-slider">
+            <span>🔉</span>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value={volume}
+              onChange={handleVolumeChange}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 };
