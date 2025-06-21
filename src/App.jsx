@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import './App.css'
 import TimeSelector from './TimeSelector'
 import TimerComponent from './TimerComponent'
-import LofiPlayer from './LofiPlayerComponent';
+import LofiLocalPlayer from './LofiLocalPlayer';
 
 function App() {
 
@@ -125,7 +125,7 @@ function App() {
       <audio id="beep" src="/alarm.mp3"></audio>
       <audio id="click" src="/click.mp3"></audio>
       <audio id="main-click" src="/main_click.mp3"></audio>
-      <LofiPlayer />
+      <LofiLocalPlayer />
       <p>Designed by Daniel Tosaus</p>
     </>
   )
