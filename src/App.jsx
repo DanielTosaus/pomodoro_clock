@@ -122,9 +122,9 @@ function App() {
       </div>
       
       <p>Pomodoros Completed in this Session: {pomodoro_count}</p>
-      <audio id="beep" src="/alarm.mp3"></audio>
-      <audio id="click" src="/click.mp3"></audio>
-      <audio id="main-click" src="/main_click.mp3"></audio>
+      <audio id="beep" src={import.meta.env.BASE_URL+"/alarm.mp3"}></audio>
+      <audio id="click" src={import.meta.env.BASE_URL+"/click.mp3"}></audio>
+      <audio id="main-click" src={import.meta.env.BASE_URL+"/main_click.mp3"}></audio>
       <LofiLocalPlayer />
       <p>Designed by Daniel Tosaus</p>
     </>
