@@ -112,6 +112,7 @@ function App() {
         running={running}
         updateValue={setBreakTime}
         />
+        <img id="plant" src={import.meta.env.BASE_URL+"/plant"+Math.min(pomodoro_count,7)+".png"}></img>
         <TimeSelector
           name="Session"
           emoji="🌿"

@@ -25,13 +25,13 @@
 
 .button-wrapper {
   position: relative;
-  width: 100px; /* control size of the circle */
-  height: 100px;
+  width: 150px; /* control size of the circle */
+  height: 150px;
 }
 
 #start_stop {
   border-radius: 50%;
-  font-size: 1.2em;
+  font-size: 1.4em;
   padding: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -52,15 +52,15 @@
   top: -15px;
   right: -15px;
   border-radius: 50%;
-  font-size: 1em;
+  font-size: 1.1em;
   padding: 0.6em;
   font-weight: 700;
   font-family: inherit;
   background-color: #e6d3a3;
   border: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -119,6 +119,11 @@
   font-size: 1.4em;
   font-weight: bold;
   margin: 0.2em 0;
+}
+
+#plant{
+  width: 20%;
+  height: 20%;
 }
 
 .lofi-player {
