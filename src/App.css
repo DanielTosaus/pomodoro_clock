@@ -5,17 +5,20 @@
   text-align: center;
   color: #2E5339;
 }
+
 #time-left {
   font-size: 6.2em;
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
 }
+
 #timer-label {
   font-size: 3.2em;
   font-style: italic;
-  margin:20px 0 0 0;
-  padding:0;
+  margin: 20px 0 0 0;
+  padding: 0;
 }
+
 #timer-buttons-container {
   display: flex;
   justify-content: center;
@@ -25,7 +28,7 @@
 
 .button-wrapper {
   position: relative;
-  width: 150px; /* control size of the circle */
+  width: 150px;
   height: 150px;
 }
 
@@ -40,7 +43,7 @@
   background-color: #a8d5ba;
   border: none;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  transition: background 0.3s;
+  transition: background-color 0.3s;
 }
 
 #start_stop:hover {
@@ -121,7 +124,7 @@
   margin: 0.2em 0;
 }
 
-#plant{
+#plant {
   width: 20%;
   height: 20%;
 }
@@ -171,6 +174,158 @@
 }
 
 @keyframes fadeIn {
-  0%   { opacity: 0; transform: translateY(10px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   MOBILE RESPONSIVE STYLES
+   ========================= */
+
+@media screen and (max-width: 600px) {
+  #root {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 1rem 0.75rem;
+    overflow-x: hidden;
+  }
+
+  #time-left {
+    font-size: clamp(3rem, 14vw, 5rem);
+    line-height: 1.1;
+  }
+
+  #timer-label {
+    font-size: clamp(1.5rem, 7vw, 2.4rem);
+    margin-top: 0.75rem;
+  }
+
+  #timer-buttons-container {
+    margin-top: 1.5rem;
+  }
+
+  .button-wrapper {
+    width: clamp(110px, 35vw, 140px);
+    height: clamp(110px, 35vw, 140px);
+  }
+
+  #start_stop {
+    font-size: 1.1em;
+    padding: 0.6em;
+  }
+
+  #reset {
+    width: 38px;
+    height: 38px;
+    top: -8px;
+    right: -8px;
+    font-size: 1em;
+    padding: 0;
+  }
+
+  #selectors-wrapper {
+    gap: 0.75rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+
+  .time-selector {
+    width: auto;
+    min-width: 0;
+    flex: 1 1 120px;
+    max-width: 160px;
+    margin: 0;
+    padding: 0.75rem 0.5rem;
+    border-radius: 0.85rem;
+  }
+
+  .time-selector p {
+    font-size: 0.85em;
+  }
+
+  .time-selector button {
+    font-size: 0.85em;
+    padding: 0.5em 0.7em;
+    margin: 0.25em;
+    min-width: 36px;
+    min-height: 36px;
+  }
+
+  .time-selector #session-length,
+  .time-selector #break-length {
+    font-size: 1.3em;
+  }
+
+  #plant {
+    width: 20%;
+    height: 20%;
+    object-fit: contain;
+  }
+
+  .lofi-player {
+    width: 100%;
+    margin-top: 1.25rem;
+    padding-bottom: 1rem;
+  }
+
+  .lofi-button {
+    font-size: 1rem;
+    padding: 0.75em 1.25em;
+    min-height: 44px;
+  }
+
+  .volume-slider {
+    width: min(100%, 260px);
+    justify-content: center;
+  }
+
+  .volume-slider input[type="range"] {
+    max-width: 100%;
+  }
+
+  /* Avoid hover-only styling on touch devices */
+  #start_stop:hover,
+  #reset:hover,
+  .time-selector button:hover,
+  .lofi-button:hover {
+    /* Keep the normal colors on touch screens */
+  }
+}
+
+/* Extra-small phones */
+@media screen and (max-width: 360px) {
+  #root {
+    padding: 0.75rem 0.5rem;
+  }
+
+  #selectors-wrapper {
+    gap: 0.5rem;
+  }
+
+  .time-selector {
+    flex-basis: 110px;
+    padding: 0.65rem 0.35rem;
+  }
+
+  #time-left {
+    font-size: 2.8rem;
+  }
+
+  #timer-label {
+    font-size: 1.4rem;
+  }
+}
+
+/* Remove the blue tap highlight on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
 }
