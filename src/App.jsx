@@ -112,7 +112,8 @@ function App() {
         running={running}
         updateValue={setBreakTime}
         />
-        <img id="plant" src={import.meta.env.BASE_URL+"/plant"+Math.min(pomodoro_count,7)+".png"}></img>
+        
+        <img id="plant" src={`${import.meta.env.BASE_URL}plant`+Math.min(pomodoro_count,7)+".png"}></img>
         <TimeSelector
           name="Session"
           emoji="🌿"
@@ -123,9 +124,9 @@ function App() {
       </div>
       
       <p>Pomodoros Completed in this Session: {pomodoro_count}</p>
-      <audio id="beep" src={import.meta.env.BASE_URL+"/alarm.mp3"}></audio>
-      <audio id="click" src={import.meta.env.BASE_URL+"/click.mp3"}></audio>
-      <audio id="main-click" src={import.meta.env.BASE_URL+"/main_click.mp3"}></audio>
+      <audio id="beep" src={`${import.meta.env.BASE_URL}alarm.mp3`}></audio>
+      <audio id="click" src={`${import.meta.env.BASE_URL}click.mp3`}></audio>
+      <audio id="main-click" src={`${import.meta.env.BASE_URL}main_click.mp3`}></audio>
       <LofiLocalPlayer />
       <p>Designed by Daniel Tosaus</p>
     </>

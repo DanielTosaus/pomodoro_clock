@@ -11,6 +11,8 @@
     "deploy": "gh-pages -d dist -f"
   },
   "dependencies": {
+    "@capacitor/android": "^8.5.3",
+    "@capacitor/core": "^8.5.3",
     "flatted": "^3.4.2",
     "minimatch": "^3.1.5",
     "react": "^19.0.0",
@@ -19,6 +21,7 @@
     "rollup": "^4.59.0"
   },
   "devDependencies": {
+    "@capacitor/cli": "^8.5.3",
     "@eslint/js": "^9.21.0",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
