@@ -33,31 +33,37 @@ const LofiLocalPlayer = () => {
   };
 
   return (
-    <div className="lofi-player" style={{ textAlign: 'center' }}>
-      <audio ref={audioRef} loop src={`${import.meta.env.BASE_URL}lofi.mp3`} />
+   <div className="lofi-player" style={{ textAlign: 'center' }}>
+    <audio ref={audioRef} loop src={`${import.meta.env.BASE_URL}lofi.mp3`} />
 
-      {!started ? (
-        <button className="lofi-button" onClick={startMusic}>
-          🎵 Play Music
-        </button>
-      ) : (
-        <>
-          <button className="lofi-button" onClick={togglePlay}>
-            {playing ? '🔇 Pause Music' : '🔊 Play Music'}
-          </button>
-          <div className="volume-slider" style={{ marginTop: '0.5em' }}>
-            <span>🔉</span>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={volume * 100}
-              onChange={handleVolumeChange}
-            />
-          </div>
-        </>
-      )}
+    <button
+      className="lofi-button"
+      onClick={started ? togglePlay : startMusic}
+    >
+      {!started
+        ? '🎵 Play Music'
+        : playing
+          ? '🔇 Pause Music'
+          : '🔊 Play Music'}
+    </button>
+
+    <div
+      className={`volume-slider ${started ? 'visible' : ''}`}
+      style={{ marginTop: '0.5em' }}
+      aria-hidden={!started}
+    >
+      <span>🔉</span>
+      <input
+        type="range"
+        min="0"
+        max="100"
+        value={volume * 100}
+        onChange={handleVolumeChange}
+        tabIndex={started ? 0 : -1}
+        aria-label="Music volume"
+      />
     </div>
+  </div>
   );
 };
 
